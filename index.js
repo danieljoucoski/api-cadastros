@@ -1,10 +1,12 @@
 const express = require("express");
 const fs = require("fs");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());
 
 
 //http://localhost:3000/saudacao?nome=bruno

@@ -10,22 +10,23 @@ app.use(cors());
 
 
 //http://localhost:3000/saudacao?nome=bruno
-app.get("/saudacao", (req, res) => {
-    const nome = req.query.nome;
 
-    if (!nome) {
-        return res.status(404).json(
+
+app.post("/login", (req, res) => {
+    const { email, senha } = req.body;
+    if (!email && !senha ) {
+        return res.status(404).json({ erro: "dados incompleto" })
+    }
+     if (email==' ' && senha == '123456'){
+        res.json(
             {
-                erro: "nome não foi informado"
+                token:'123456'
             }
         )
-    }
+     }else{
+        return res.status(404).json({ erro: "dados incorretos" })
+     }
 
-    res.json(
-        {
-            mensagem: `saudacões ${nome}!`
-        }
-    )
 
 
 })

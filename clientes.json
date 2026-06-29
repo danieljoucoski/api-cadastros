@@ -5,5 +5,23 @@
     "CEP": "83601630",
     "rua": "avenida ade,ar de barros",
     "cidade": "campo largo"
+  },
+  {
+    "nome": "teste1",
+    "CPF": "42121",
+    "CEP": "83601390",
+    "rua": "Avenida Ademar de Barros",
+    "cidade": "Campo Largo",
+    "estado": "Paraná",
+    "numero": "421124"
+  },
+  {
+    "nome": "nico",
+    "CPF": "12312321321",
+    "CEP": "83601390",
+    "rua": "Avenida Ademar de Barros",
+    "cidade": "Campo Largo",
+    "estado": "Paraná",
+    "numero": "35423"
   }
 ]

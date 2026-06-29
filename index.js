@@ -13,12 +13,28 @@ const clientesFile = path.join(__dirname, "clientes.json")
 function salvarClientes(clientes) {
     fs.writeFileSync(clientesFile, JSON.stringify(clientes, null, 2), "utf-8")
 }
+const usuarioFile = path.join(__dirname, "usuarios.json")
+function salvarUsuario(usuario) {
+    fs.writeFileSync(usuarioFile, JSON.stringify(usuario, null, 2), "utf-8")
+}
 
 function lerClientes() {
     if (!fs.existsSync(clientesFile)) {
         return [];
     }
     const dados = fs.readFileSync(clientesFile, 'utf-8')
+    try {
+        return JSON.parse(dados) || [];
+    } catch (error) {
+        return []
+    }
+}
+
+function lerUsuario() {
+    if (!fs.existsSync(usuarioFile)) {
+        return [];
+    }
+    const dados = fs.readFileSync(usuarioFile, 'utf-8')
     try {
         return JSON.parse(dados) || [];
     } catch (error) {
@@ -94,6 +110,20 @@ app.post("/media", (req, res) => {
         nota2,
         media: parseFloat(media)
     })
+})
+app.post("/usuarios", (req, res) => {
+    const { nome, email, senha } = req.body;
+    if (!nome || !email || !senha) {
+        return res.status(404).json({ erro: "dados incompleto" })
+    }
+    const usuario = lerUsuario()
+    if (usuario.some(u => u.email === email)) {
+        return res.status(400).json({ erro: "usuario já cadastrado" })
+    }
+    const novoUsuario = { nome, email, senha };
+    usuario.push(novoUsuario);
+    salvarUsuario(usuario);
+    return res.status(201).json({ mensagem: "usuario cadastrado com sucesso" })
 })
 
 //finalzão

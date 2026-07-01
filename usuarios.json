@@ -3,5 +3,15 @@
     "nome": "daniel",
     "email": "teste",
     "senha": "83601630"
+  },
+  {
+    "nome": "teste",
+    "email": "teste2",
+    "senha": "teste"
+  },
+  {
+    "nome": "daniel",
+    "email": "daniel@gmail.com",
+    "senha": "dani"
   }
 ]

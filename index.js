@@ -68,15 +68,18 @@ app.post("/login", (req, res) => {
     if (!email || !senha) {
         return res.status(404).json({ erro: "dados incompleto" })
     }
-    if (email == 'admin@admin.com' && senha == '123456') {
+    const usuario = lerUsuario()
+    if (usuario.some(u => u.email === email) && usuario.some(u => u.email === email)) {
         res.json(
             {
                 token: '123456'
             }
         )
-    } else {
+    }else {
         return res.status(404).json({ erro: "dados incorretos" })
     }
+
+
 
 
 

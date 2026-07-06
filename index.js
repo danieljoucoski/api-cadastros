@@ -75,7 +75,7 @@ app.post("/login", (req, res) => {
                 token: '123456'
             }
         )
-    }else {
+    } else {
         return res.status(404).json({ erro: "dados incorretos" })
     }
 
@@ -128,6 +128,32 @@ app.post("/usuarios", (req, res) => {
     salvarUsuario(usuario);
     return res.status(201).json({ mensagem: "usuario cadastrado com sucesso" })
 })
+
+// nao pronto
+app.post("/pesquisarClientes", (req, res) => {
+    const { pesquisarCPF } = req.body;
+    if (!pesquisarCPF) {
+        return res.status(404).json({ erro: "dados incompleto" })
+    }
+    const clientes = lerClientes()
+    if (clientes.some(C => C.CPF == pesquisarCPF)) {
+        return res.status(201).json({
+            nome,
+            CPF,
+            CEP,
+            rua,
+            cidade,
+            estado,
+            numero
+        })
+    }
+})
+
+
+
+
+
+
 
 //finalzão
 app.listen(port, () => {
